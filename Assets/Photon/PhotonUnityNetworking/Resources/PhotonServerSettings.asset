@@ -40,6 +40,9 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - SetName
+  - spawnPlayer
+  - spawnPlayers
+  - Updatelist
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

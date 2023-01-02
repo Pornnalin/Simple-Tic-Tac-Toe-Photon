@@ -14,9 +14,10 @@ public class NameCharacter : MonoBehaviour
 
     private void Start()
     {
+        
         textName.text = photonView.Owner.NickName;
         spawnPlayer = FindObjectOfType<SpawnPlayer>();
-        spawnPlayer.players.Add(this.gameObject.GetComponent<NameCharacter>());
+        spawnPlayer.playerTra.Add(gameObject.transform);
 
     }
 }
