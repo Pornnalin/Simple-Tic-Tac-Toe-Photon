@@ -13,6 +13,7 @@ public class SpawnPlayer : MonoBehaviour
     [SerializeField] private Transform[] pos;
     [SerializeField] public List<Transform> playerTra;
     [SerializeField] PhotonView view;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,6 @@ public class SpawnPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         view.RPC(nameof(Updatelist), RpcTarget.All);
 
     }

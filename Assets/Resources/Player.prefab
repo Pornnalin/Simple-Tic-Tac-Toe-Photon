@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textName: {fileID: 8728324231589594195}
   photonView: {fileID: 9014276538511315116}
+  spawnPlayer: {fileID: 0}
 --- !u!114 &9014276538511315116
 MonoBehaviour:
   m_ObjectHideFlags: 0

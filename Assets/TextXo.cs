@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
-public class TextXo : MonoBehaviour
+using Photon.Pun;
+public class TextXo : MonoBehaviourPunCallbacks
 {
     public XOController controller;
     public TextMeshProUGUI uGUI;
-
+    public PhotonView view;
+    public bool updateTurn;
     // Start is called before the first frame update
     void Start()
     {
-
+        view = GetComponent<PhotonView>();
         uGUI = GetComponentInChildren<TextMeshProUGUI>();
         uGUI.text = "";
     }
@@ -19,8 +20,12 @@ public class TextXo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // view.RPC("updateBool", RpcTarget.All);
+        
     }
+
+   
+
     public void OnClickButton()
     {
         switch (controller.currentStage)
@@ -29,9 +34,8 @@ public class TextXo : MonoBehaviour
 
                 if (uGUI.text == "")
                 {
-                    uGUI.text = "X";
-
-                    controller.currentStage = XOController.stage.Player_2;
+                    view.RPC("UpdateText", RpcTarget.All, "X");
+                
                 }
                 else
                 {
@@ -43,9 +47,9 @@ public class TextXo : MonoBehaviour
 
                 if (uGUI.text == "")
                 {
-                    uGUI.text = "O";
+                    view.RPC("UpdateText", RpcTarget.All, "O");
+                   
 
-                    controller.currentStage = XOController.stage.Player_1;
                 }
                 else
                 {
@@ -55,5 +59,11 @@ public class TextXo : MonoBehaviour
                 break;
         }
 
+    }
+    [PunRPC]
+    public void UpdateText(string text)
+    {
+        uGUI.text = text;
+        updateTurn = true;
     }
 }
